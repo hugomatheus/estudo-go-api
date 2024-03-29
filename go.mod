@@ -3,6 +3,7 @@ module github.com/hugomatheus/go-api
 go 1.22.1
 
 require (
+	github.com/go-chi/chi v1.5.5
 	github.com/go-chi/jwtauth/v5 v5.3.0
 	github.com/google/uuid v1.4.0
 	github.com/spf13/viper v1.18.2
