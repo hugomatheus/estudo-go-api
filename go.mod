@@ -1,6 +1,6 @@
 module github.com/hugomatheus/go-api
 
-go 1.21.4
+go 1.22.1
 
 require (
 	github.com/go-chi/jwtauth/v5 v5.3.0
