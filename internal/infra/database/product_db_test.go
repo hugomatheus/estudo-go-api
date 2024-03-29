@@ -76,6 +76,18 @@ func TestFindAll(t *testing.T) {
 	products, err = productDB.FindAll(4, 10, "asc")
 	assert.Nil(t, err)
 	assert.Empty(t, products)
+
+	products, err = productDB.FindAll(0, 0, "")
+	assert.Nil(t, err)
+	assert.Len(t, products, 25)
+	assert.Equal(t, "Product 1", products[0].Name)
+	assert.Equal(t, "Product 25", products[24].Name)
+
+	products, err = productDB.FindAll(1, 25, "order")
+	assert.Nil(t, err)
+	assert.Len(t, products, 25)
+	assert.Equal(t, "Product 1", products[0].Name)
+	assert.Equal(t, "Product 25", products[24].Name)
 }
 
 func TestUpdateProduct(t *testing.T) {

@@ -5,24 +5,20 @@ import (
 
 	"github.com/hugomatheus/go-api/internal/entity"
 	"github.com/stretchr/testify/assert"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
 
 func TestCreateUser(t *testing.T) {
-	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	db.AutoMigrate(&entity.User{})
+	SetupDBTest(&entity.User{})
+	defer CloseDBTest()
 
+	dbInstance := GetDBTest()
 	user, _ := entity.NewUser("Fulano", "fulano@email.com", "123456")
-	userDB := NewUser(db)
-	err = userDB.Create(user)
+	userDB := NewUser(dbInstance)
+	err := userDB.Create(user)
 	assert.Nil(t, err)
 
 	var userFound entity.User
-	err = db.First(&userFound, "id = ?", user.ID).Error
+	err = dbInstance.First(&userFound, "id = ?", user.ID).Error
 	assert.Nil(t, err)
 	assert.Equal(t, user.ID, userFound.ID)
 	assert.Equal(t, user.Name, userFound.Name)
@@ -35,15 +31,12 @@ func TestCreateUser(t *testing.T) {
 }
 
 func TestFindByEmail(t *testing.T) {
-	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	db.AutoMigrate(&entity.User{})
+	SetupDBTest(&entity.User{})
+	defer CloseDBTest()
 
 	user, _ := entity.NewUser("Fulano", "fulano@email.com", "123456")
-	userDB := NewUser(db)
-	err = userDB.Create(user)
+	userDB := NewUser(GetDBTest())
+	err := userDB.Create(user)
 	assert.Nil(t, err)
 
 	userFound, err := userDB.FindByEmail(user.Email)
@@ -57,13 +50,10 @@ func TestFindByEmail(t *testing.T) {
 }
 
 func TestWhenNotFindByEmail(t *testing.T) {
-	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	db.AutoMigrate(&entity.User{})
+	SetupDBTest(&entity.User{})
+	defer CloseDBTest()
 
-	userDB := NewUser(db)
+	userDB := NewUser(GetDBTest())
 	userFound, err := userDB.FindByEmail("email@email.com")
 	assert.Nil(t, userFound)
 	assert.NotNil(t, err)
