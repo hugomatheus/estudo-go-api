@@ -5,3 +5,34 @@ Content-Type: application/json
   "name": "Product1",
   "price": 100.00
 }
+
+###
+
+GET http://localhost:3333/products?page=1&limit=2
+
+
+###
+
+GET http://localhost:3333/products
+
+###
+
+GET http://localhost:3333/products/1
+
+###
+
+GET http://localhost:3333/products/02645aff-5de8-4bc1-a91c-a63d65c43397
+
+###
+
+PUT http://localhost:3333/products/02645aff-5de8-4bc1-a91c-a63d65c43397
+Content-Type:  application/json
+
+{
+  "name": "Product edit3",
+  "price": 1230.04
+}
+
+###
+
+DELETE http://localhost:3333/products/2288cae4-2650-440d-96b6-fb623c1d75f8
