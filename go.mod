@@ -4,6 +4,7 @@ go 1.22.1
 
 require (
 	github.com/go-chi/chi v1.5.5
+	github.com/go-chi/jwtauth v1.2.0
 	github.com/go-chi/jwtauth/v5 v5.3.0
 	github.com/google/uuid v1.4.0
 	github.com/spf13/viper v1.18.2
@@ -21,16 +22,19 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
+	github.com/lestrrat-go/backoff/v2 v2.0.7 // indirect
 	github.com/lestrrat-go/blackmagic v1.0.2 // indirect
 	github.com/lestrrat-go/httpcc v1.0.1 // indirect
 	github.com/lestrrat-go/httprc v1.0.4 // indirect
 	github.com/lestrrat-go/iter v1.0.2 // indirect
+	github.com/lestrrat-go/jwx v1.1.0 // indirect
 	github.com/lestrrat-go/jwx/v2 v2.0.17 // indirect
 	github.com/lestrrat-go/option v1.0.1 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
