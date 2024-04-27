@@ -1,5 +1,6 @@
 POST http://localhost:3333/products
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyNTIzNTYsInN1YiI6IjMyOTdkNGJkLTBkNzgtNDk5Yy1hYTc5LWIyY2M2MjlkMjZlNCJ9.WcXC1i5CgWSQE9-8utKourcycTXR1pAIcFsE5uyLGxI
 
 {
   "name": "Product1",
@@ -9,7 +10,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3333/products?page=1&limit=2
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyNTIyOTIsInN1YiI6IjMyOTdkNGJkLTBkNzgtNDk5Yy1hYTc5LWIyY2M2MjlkMjZlNCJ9.tonYz9dPturtr2yBBMIfNuEjs0bqo829rt7dYjLqTnU
 
 ###
 

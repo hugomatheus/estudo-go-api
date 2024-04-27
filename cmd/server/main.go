@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jwtauth/v5"
 	"github.com/hugomatheus/go-api/configs"
 	"github.com/hugomatheus/go-api/internal/entity"
 	"github.com/hugomatheus/go-api/internal/infra/database"
@@ -32,14 +33,21 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	r.Post("/products", productHandler.CreateProduct)
-	r.Get("/products", productHandler.GetAllProducts)
-	r.Get("/products/{id}", productHandler.GetProductById)
-	r.Put("/products/{id}", productHandler.UpdateProduct)
-	r.Delete("/products/{id}", productHandler.DeleteProduct)
 
-	r.Post("/users", userHandler.CreateUser)
-	r.Post("/users/login", userHandler.GetJwt)
+	r.Route("/products", func(r chi.Router) {
+		r.Use(jwtauth.Verifier(configs.TokenAuth))
+		r.Use(jwtauth.Authenticator(configs.TokenAuth))
+		r.Post("/", productHandler.CreateProduct)
+		r.Get("/", productHandler.GetAllProducts)
+		r.Get("/{id}", productHandler.GetProductById)
+		r.Put("/{id}", productHandler.UpdateProduct)
+		r.Delete("/{id}", productHandler.DeleteProduct)
+	})
+
+	r.Route("/users", func(r chi.Router) {
+		r.Post("/", userHandler.CreateUser)
+		r.Post("/login", userHandler.GetJwt)
+	})
 
 	http.ListenAndServe(":3333", r)
 }
