@@ -10,7 +10,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyNTIzN
 ###
 
 GET http://localhost:3333/products?page=1&limit=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQyNTIyOTIsInN1YiI6IjMyOTdkNGJkLTBkNzgtNDk5Yy1hYTc5LWIyY2M2MjlkMjZlNCJ9.tonYz9dPturtr2yBBMIfNuEjs0bqo829rt7dYjLqTnU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQ0MzcyNzcsInN1YiI6IjMyOTdkNGJkLTBkNzgtNDk5Yy1hYTc5LWIyY2M2MjlkMjZlNCJ9.u7Qb7qkYntEbPVFG6esavuExa59Ozm1fb3H8FzZbQOI
 
 ###
 
