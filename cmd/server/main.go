@@ -7,12 +7,36 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/jwtauth/v5"
 	"github.com/hugomatheus/go-api/configs"
+	_ "github.com/hugomatheus/go-api/docs"
 	"github.com/hugomatheus/go-api/internal/entity"
 	"github.com/hugomatheus/go-api/internal/infra/database"
 	"github.com/hugomatheus/go-api/internal/infra/webserver/handlers"
+	httpSwagger "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
+
+// @title           Swagger Example API
+// @version         1.0
+// @description     Product API with authentication
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:3333
+// @BasePath  /
+
+// @securityDefinitions.apikey  ApiKeyAuth
+// @in header
+// @name Authorization
+
+// @externalDocs.description  OpenAPI
+// @externalDocs.url          https://swagger.io/resources/open-api/
 
 func main() {
 	configs, err := configs.LoadConfig(".")
@@ -53,5 +77,8 @@ func main() {
 		r.Post("/login", userHandler.GetJwt)
 	})
 
+	r.Get("/docs/*", httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:3333/docs/doc.json"),
+	))
 	http.ListenAndServe(":3333", r)
 }
